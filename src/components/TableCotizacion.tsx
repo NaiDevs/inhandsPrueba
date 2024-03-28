@@ -13,7 +13,7 @@ import Trash from "./icons/Trash";
 
 async function loadsales() {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/cotizaciones");
+    const { data } = await axios.get("https://inhands-mu.vercel.app/api/cotizaciones");
     return data;
   } catch (error) {
     console.error("Error loading customers:", error);
@@ -66,7 +66,7 @@ export default function TableForm() {
 
   const handleEyeClick = async (id:number) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/cotizaciones/${id}`);
+      const response = await axios.get(`https://inhands-mu.vercel.app/api/cotizaciones/${id}`);
       setSelectedSales(response.data); // Almacena los detalles del producto en el estado
       setSelectedSalesModal(response.data[0]); // Almacena los detalles del producto en el estado
       onOpen(); // Abre el modal // Aquí puedes manejar la respuesta de la API como desees
@@ -77,7 +77,7 @@ export default function TableForm() {
   const handleDelete = async (id:number) => {
     try {
       if (confirm('¿Estás seguro de eliminar esta cotizacion?')) {
-      const response = await axios.delete(`http://localhost:3000/api/cotizaciones/${id}`);
+      const response = await axios.delete(`https://inhands-mu.vercel.app/api/cotizaciones/${id}`);
       setSales(prevSales => prevSales.filter((sales:any) => sales.id !== id));
       }
     } catch (error) {

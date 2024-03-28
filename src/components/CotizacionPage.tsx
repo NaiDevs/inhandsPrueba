@@ -96,22 +96,22 @@ export default function CotizacionPage() {
     };
     const fetchData = async () => {
       try {
-        const productsData = await loadData("http://localhost:3000/api/productos");
+        const productsData = await loadData("https://inhands-mu.vercel.app/api/productos");
         setProducts(productsData);
 
-        const taxsData = await loadData("http://localhost:3000/api/descuentos");
+        const taxsData = await loadData("https://inhands-mu.vercel.app/api/descuentos");
         setTaxs(taxsData);
 
-        const customerData = await loadData("http://localhost:3000/api/clientes");
+        const customerData = await loadData("https://inhands-mu.vercel.app/api/clientes");
         setCustomers(customerData);
 
-        const facturaDataArray = await loadData("http://localhost:3000/api/facturas");
+        const facturaDataArray = await loadData("https://inhands-mu.vercel.app/api/facturas");
         const facturaData = facturaDataArray[0]; 
         setFactura({ numeroFactura: facturaData.numeroFactura });
 
         // Formatear la fecha como "dd-mm-yyyy"
 
-        const idVenta = await loadData("http://localhost:3000/api/detalleCotizacion");
+        const idVenta = await loadData("https://inhands-mu.vercel.app/api/detalleCotizacion");
         const idVentaNumber = idVenta[0].id; 
 
         setIdVentaNumero(idVentaNumber);

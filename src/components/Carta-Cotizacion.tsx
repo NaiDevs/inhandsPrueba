@@ -48,7 +48,7 @@ export default function CartaCotizacion() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const resPerfil = await axios.get("http://localhost:3000/api/perfil");
+                const resPerfil = await axios.get("https://inhands-mu.vercel.app/api/perfil");
                 if (resPerfil.data.length > 0) {
                     const data = resPerfil.data[0];
                     setPerfil({

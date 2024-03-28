@@ -34,10 +34,10 @@ import { Toaster, toast } from 'sonner'
     useEffect(() => {
       async function fetchData() {
         try {
-          const categoriesResponse = await axios.get("http://localhost:3000/api/categorias");
-          const brandsResponse = await axios.get("http://localhost:3000/api/marcas");
-          const taxsResponse = await axios.get("http://localhost:3000/api/impuestos");
-          const proveedoresResponse = await axios.get("http://localhost:3000/api/proveedores");
+          const categoriesResponse = await axios.get("https://inhands-mu.vercel.app/api/categorias");
+          const brandsResponse = await axios.get("https://inhands-mu.vercel.app/api/marcas");
+          const taxsResponse = await axios.get("https://inhands-mu.vercel.app/api/impuestos");
+          const proveedoresResponse = await axios.get("https://inhands-mu.vercel.app/api/proveedores");
           
           setCategories(categoriesResponse.data);
           setBrands(brandsResponse.data);

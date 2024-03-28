@@ -11,7 +11,7 @@ import Trash from "./icons/Trash";
 
 async function loadsales() {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/ventas");
+    const { data } = await axios.get("https://inhands-mu.vercel.app/api/ventas");
     return data;
   } catch (error) {
     console.error("Error loading customers:", error);
@@ -64,7 +64,7 @@ export default function TableForm() {
 
   const handleEyeClick = async (id:number) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/ventas/${id}`);
+      const response = await axios.get(`https://inhands-mu.vercel.app/api/ventas/${id}`);
       setSelectedSales(response.data[0]); // Almacena los detalles del producto en el estado
       onOpen(); // Abre el modal // Aquí puedes manejar la respuesta de la API como desees
     } catch (error) {

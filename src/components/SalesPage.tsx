@@ -117,20 +117,20 @@ export default function SalesPage() {
     };
     const fetchData = async () => {
       try {
-        const productsData = await loadData("http://localhost:3000/api/productos");
+        const productsData = await loadData("https://inhands-mu.vercel.app/api/productos");
         setProducts(productsData);
 
-        const taxsData = await loadData("http://localhost:3000/api/descuentos");
+        const taxsData = await loadData("https://inhands-mu.vercel.app/api/descuentos");
         setTaxs(taxsData);
 
-        const customerData = await loadData("http://localhost:3000/api/clientes");
+        const customerData = await loadData("https://inhands-mu.vercel.app/api/clientes");
         setCustomers(customerData);
 
-        const facturaDataArray = await loadData("http://localhost:3000/api/facturas");
+        const facturaDataArray = await loadData("https://inhands-mu.vercel.app/api/facturas");
         const facturaData = facturaDataArray[0]; 
         setFactura({ numeroFactura: facturaData.numeroFactura });
 
-        const facturacionData = await loadData("http://localhost:3000/api/facturacion");
+        const facturacionData = await loadData("https://inhands-mu.vercel.app/api/facturacion");
         const fechaLimite = new Date(facturacionData[0].fechaLimite);
         const dia = fechaLimite.getDate();
         const mes = fechaLimite.getMonth() + 1; // Sumamos 1 ya que los meses comienzan desde 0
@@ -139,7 +139,7 @@ export default function SalesPage() {
         // Formatear la fecha como "dd-mm-yyyy"
         const fechaLimiteFormateada = `${dia < 10 ? '0' + dia : dia}-${mes < 10 ? '0' + mes : mes}-${año}`;
 
-        const idVenta = await loadData("http://localhost:3000/api/detalleVenta");
+        const idVenta = await loadData("https://inhands-mu.vercel.app/detalleVenta");
         const idVentaNumber = idVenta[0].id; 
 
         setIdVentaNumero(idVentaNumber);

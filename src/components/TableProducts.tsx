@@ -55,7 +55,7 @@ export default function TableForm() {
 
   const handleEyeClick = async (codigo:any) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/productos/${codigo}`);
+      const response = await axios.get(`https://inhands-mu.vercel.app/api/productos/${codigo}`);
       setSelectedProduct(response.data); // Almacena los detalles del producto en el estado
       onOpen(); // Abre el modal // Aquí puedes manejar la respuesta de la API como desees
     } catch (error) {
