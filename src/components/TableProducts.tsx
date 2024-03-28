@@ -11,7 +11,7 @@ import Trash from "./icons/Trash";
 
 async function loadProducts() {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/productos");
+    const { data } = await axios.get("https://inhands-delta.vercel.app/api/productos");
     return data;
   } catch (error) {
     console.error("Error loading products:", error);
