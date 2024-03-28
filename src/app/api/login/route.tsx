@@ -1,4 +1,4 @@
-import { connGlobal } from "@/libs/mysql";
+import { connGlobal } from "@/libs/mysqlDB";
 import { NextResponse } from "next/server";
 
 
@@ -6,7 +6,7 @@ export async function GET() {
     try {
       const results = await connGlobal.query("SELECT * FROM usuarios");
       return NextResponse.json(results);
-    } catch (error) {
+    } catch (error:any) {
       console.log(error);
       return NextResponse.json(
         {
@@ -19,7 +19,7 @@ export async function GET() {
     }
   }
 
-  export async function POST(request) {
+  export async function POST(request:any) {
     try {
         const data = await request.json();
         const { username, password } = data;
@@ -37,16 +37,16 @@ export async function GET() {
 
         const results = await connGlobal.query("SELECT * FROM usuarios WHERE usuario = ? AND contrasenauser = ?", [username, password]);
 
-        if (results.length === 0) {
+        if (!Array.isArray(results) || results.length === 0) {
             return NextResponse.json(
-                {
+              {
                     message: "Invalid username or password",
-                },
-                {
-                    status: 401,
-                }
+              },
+              {
+                status: 401,
+              }
             );
-        }
+          }
 
         const userFromDB = results[0]; // Suponiendo que solo esperas un resultado
         const userFromEnv = "u966946366_" + userFromDB.usuario;
@@ -58,7 +58,7 @@ export async function GET() {
         console.log("User and password saved in environment variables:", userFromEnv, passwordFromEnv);
 
         return NextResponse.json({db:userFromDB, usuario: userFromEnv, contrasenadb: passwordFromEnv });
-    } catch (error) {
+    } catch (error:any) {
         console.error(error);
         return NextResponse.json(
             {
