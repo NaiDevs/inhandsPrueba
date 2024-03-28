@@ -5,7 +5,8 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 import Search from './icons/Search';
 import Trash from './icons/Trash';
 import { Toaster, toast } from 'sonner';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
+
 
 
 async function loadData(url:string) {
