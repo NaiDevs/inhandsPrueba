@@ -1,10 +1,10 @@
-import { conn } from "@/libs/mysqlDB";
+import { connGlobal } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 
 
 export async function GET() {
     try {
-      const results = await conn.query("SELECT * FROM usuarios");
+      const results = await connGlobal.query("SELECT * FROM usuarios");
       return NextResponse.json(results);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ export async function GET() {
             );
         }
 
-        const results = await conn.query("SELECT * FROM usuarios WHERE usuario = ? AND contrasenauser = ?", [username, password]);
+        const results = await connGlobal.query("SELECT * FROM usuarios WHERE usuario = ? AND contrasenauser = ?", [username, password]);
 
         if (results.length === 0) {
             return NextResponse.json(

@@ -1,6 +1,6 @@
 import mysql from "serverless-mysql"
 
-export const conn = mysql({
+export const connGlobal = mysql({
     config: {
         host     : "193.203.166.107",
         user     : "u966946366_inhands",
