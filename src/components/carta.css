@@ -1,0 +1,108 @@
+/* Reset de estilos */
+body, h1, h2, p, table {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.section {
+    margin: 20px;
+}
+
+/* Estilos del encabezado */
+.header {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.img img {
+    max-width: 150px;
+    height: auto;
+}
+
+.info {
+    text-align: right;
+}
+
+/* Estilos de la información de la factura */
+.informacion-factura {
+    margin-top: 20px;
+}
+
+/* Estilos de la tabla de productos */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos del pie de página */
+.final {
+    margin-top: 20px;
+}
+
+/* Otros estilos */
+hr {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la sección de método de pago */
+.metodo-pago {
+    margin-top: 20px;
+}
+
+/* Estilos para la sección de letras */
+#letras {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la sección de facturatoda */
+.facturaToda {
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+/* Estilos para la sección de información del cliente */
+.informacion-cliente {
+    margin-top: 20px;
+}
+
+/* Estilos para la sección de descuentos e impuestos */
+.descuentos-impuestos {
+    margin-top: 20px;
+}
+
+/* Estilos para la sección de totales */
+.totales {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Estilos para la sección de firma */
+.firma {
+    margin-top: 20px;
+}
+
+/* Estilos para la sección de agradecimiento */
+.agradecimiento {
+    margin-top: 20px;
+}

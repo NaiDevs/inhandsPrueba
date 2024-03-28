@@ -1,0 +1,32 @@
+* {
+    margin: 0px;
+}
+
+body {
+    border: 0.5px solid #eaeaea;
+    width: 8cm;
+    margin: 5px;
+}
+
+section.informacion-factura {
+    font-size: 12px;
+}
+
+section.header {
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+}
+
+table {
+    text-align: center;
+    font-size: 11px;
+}
+
+section.final {
+    text-align: center;
+    font-size: 12px;
+}
+section.metodo-pago{
+    font-size: 12px;
+} 
