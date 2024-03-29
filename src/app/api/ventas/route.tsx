@@ -1,10 +1,10 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 
 
 export async function GET() {
     try {
-      const results = await conn.query("SELECT *, ventas.numFactura, COALESCE(clientes.nombre, 'Consumidor Final') AS cliente, SUM(detalleVenta.cantidad) AS productosVendidos FROM ventas INNER JOIN detalleVenta ON ventas.id = detalleVenta.id LEFT JOIN clientes ON ventas.cliente = clientes.nombre GROUP BY ventas.id;");
+      const results = await connDB.query("SELECT *, ventas.numFactura, COALESCE(clientes.nombre, 'Consumidor Final') AS cliente, SUM(detalleVenta.cantidad) AS productosVendidos FROM ventas INNER JOIN detalleVenta ON ventas.id = detalleVenta.id LEFT JOIN clientes ON ventas.cliente = clientes.nombre GROUP BY ventas.id;");
       return NextResponse.json(results);
     } catch (error:any) {
       console.log(error);
@@ -22,7 +22,7 @@ export async function GET() {
   export async function POST(request:any) {
     try {
       const data = await request.formData();
-      const results = await conn.query("INSERT INTO ventas SET ?" ,{
+      const results = await connDB.query("INSERT INTO ventas SET ?" ,{
         numFactura: data.get("numFactura"),
         cai: data.get("cai"),
         cliente: data.get("nombreCliente"),

@@ -1,11 +1,11 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function DELETE(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const results = await conn.query("DELETE FROM `marcas` WHERE id = ?" , [
+      const results = await connDB.query("DELETE FROM `marcas` WHERE id = ?" , [
         params.id,
       ]);
       return NextResponse.json(results);

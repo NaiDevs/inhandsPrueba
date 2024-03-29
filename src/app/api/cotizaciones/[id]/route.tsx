@@ -1,11 +1,11 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 import { NextApiResponse } from "next";
 
 export async function GET(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const results = await conn.query("SELECT *, COALESCE(clientes.nombre, 'Consumidor Final') AS cliente, inventario.codigo AS codigoProducto, inventario.nombre AS producto FROM cotizaciones INNER JOIN detalleCotizacion ON cotizaciones.id = detalleCotizacion.id LEFT JOIN clientes ON cotizaciones.cliente = clientes.nombre RIGHT JOIN inventario ON detalleCotizacion.producto = inventario.nombre WHERE cotizaciones.id = ?", [
+      const results = await connDB.query("SELECT *, COALESCE(clientes.nombre, 'Consumidor Final') AS cliente, inventario.codigo AS codigoProducto, inventario.nombre AS producto FROM cotizaciones INNER JOIN detalleCotizacion ON cotizaciones.id = detalleCotizacion.id LEFT JOIN clientes ON cotizaciones.cliente = clientes.nombre RIGHT JOIN inventario ON detalleCotizacion.producto = inventario.nombre WHERE cotizaciones.id = ?", [
         params.id,
       ]);
   
@@ -33,7 +33,7 @@ export async function GET(request: any, response: NextApiResponse) {
   export async function PUT(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const results = await conn.query("UPDATE `cotizaciones` SET `estado`='1' WHERE `id`= ?" , [
+      const results = await connDB.query("UPDATE `cotizaciones` SET `estado`='1' WHERE `id`= ?" , [
         params.id,
       ]);
       return NextResponse.json(results);
@@ -52,10 +52,10 @@ export async function GET(request: any, response: NextApiResponse) {
   export async function DELETE(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const results = await conn.query("DELETE FROM `cotizaciones` WHERE id = ?" , [
+      const results = await connDB.query("DELETE FROM `cotizaciones` WHERE id = ?" , [
         params.id,
       ]);
-      const results2 = await conn.query("DELETE FROM `detalleCotizacion` WHERE id = ?" , [
+      const results2 = await connDB.query("DELETE FROM `detalleCotizacion` WHERE id = ?" , [
         params.id,
       ]);
       return NextResponse.json(results),NextResponse.json(results2);

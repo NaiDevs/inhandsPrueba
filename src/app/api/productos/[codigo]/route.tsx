@@ -1,4 +1,4 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const result = await conn.query("SELECT * FROM inventario WHERE codigo = ?", [
+      const result = await connDB.query("SELECT * FROM inventario WHERE codigo = ?", [
         params.codigo,
       ]);
   
@@ -35,7 +35,7 @@ export async function GET(request: any, response: NextApiResponse) {
   export async function DELETE(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const result = await conn.query("DELETE FROM inventario WHERE codigo = ?", [
+      const result = await connDB.query("DELETE FROM inventario WHERE codigo = ?", [
         params.codigo,
       ]);
   
@@ -66,7 +66,7 @@ export async function GET(request: any, response: NextApiResponse) {
         impuesto: data.get("impuesto"),
         descripcion: data.get("descripcion"),
       }
-      const results = await conn.query("UPDATE inventario SET ? WHERE codigo = ?" , [
+      const results = await connDB.query("UPDATE inventario SET ? WHERE codigo = ?" , [
         updateData,
         params.codigo,
       ]);

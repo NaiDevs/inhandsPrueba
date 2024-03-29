@@ -1,10 +1,10 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 
 
 export async function GET() {
     try {
-      const results = await conn.query("SELECT * FROM perfil WHERE id = 1");
+      const results = await connDB.query("SELECT * FROM perfil WHERE id = 1");
       return NextResponse.json(results);
     } catch (error:any) {
       console.log(error);
@@ -29,7 +29,7 @@ export async function GET() {
         direccion: data.get("direccion"),
         pagina: data.get("pagina"),
       }
-      const results = await conn.query("UPDATE perfil SET ? WHERE id = 1" , [
+      const results = await connDB.query("UPDATE perfil SET ? WHERE id = 1" , [
         updateData,
       ]);
 

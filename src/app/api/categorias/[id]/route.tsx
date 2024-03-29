@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 
 export async function DELETE(request:any, params:any ) {
   try {
-    const results = await conn.query("DELETE FROM `categorias` WHERE id = ?" , [
+    const results = await connDB.query("DELETE FROM `categorias` WHERE id = ?" , [
       params.id,
     ]);
     return NextResponse.json(results);

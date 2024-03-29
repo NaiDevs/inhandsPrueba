@@ -1,4 +1,4 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 
 export async function POST(request: any) {
@@ -7,7 +7,7 @@ export async function POST(request: any) {
     const inicio = data.get("inicio");
     const final = data.get("final");
     console.log(data)
-    const results = await conn.query("SELECT ventas.numFactura, ventas.cliente, ventas.fecha, SUM(detalleVenta.cantidad) AS productosVendidos, ventas.total FROM ventas INNER JOIN detalleVenta ON ventas.id = detalleVenta.id WHERE ventas.fecha BETWEEN ? AND ?", [inicio, final]);
+    const results = await connDB.query("SELECT ventas.numFactura, ventas.cliente, ventas.fecha, SUM(detalleVenta.cantidad) AS productosVendidos, ventas.total FROM ventas INNER JOIN detalleVenta ON ventas.id = detalleVenta.id WHERE ventas.fecha BETWEEN ? AND ?", [inicio, final]);
     console.log(results)
     return NextResponse.json(results);
   } catch (error) {

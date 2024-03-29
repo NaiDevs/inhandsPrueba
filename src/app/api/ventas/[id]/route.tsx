@@ -1,4 +1,4 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const result = await conn.query("SELECT *, ventas.numFactura, COALESCE(clientes.nombre, 'Consumidor Final') AS cliente, inventario.codigo AS codigoProducto, inventario.nombre AS producto FROM ventas INNER JOIN detalleVenta ON ventas.id = detalleVenta.id LEFT JOIN clientes ON ventas.cliente = clientes.nombre RIGHT JOIN inventario ON detalleVenta.producto = inventario.nombre WHERE detalleVenta.id = ?", [
+      const result = await connDB.query("SELECT *, ventas.numFactura, COALESCE(clientes.nombre, 'Consumidor Final') AS cliente, inventario.codigo AS codigoProducto, inventario.nombre AS producto FROM ventas INNER JOIN detalleVenta ON ventas.id = detalleVenta.id LEFT JOIN clientes ON ventas.cliente = clientes.nombre RIGHT JOIN inventario ON detalleVenta.producto = inventario.nombre WHERE detalleVenta.id = ?", [
         params.id,
       ]);
   

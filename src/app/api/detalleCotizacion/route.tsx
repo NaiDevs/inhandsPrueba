@@ -1,10 +1,10 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 
 
 export async function GET() {
     try {
-      const results = await conn.query("SELECT MAX(id) + 1 AS id FROM `cotizaciones`");
+      const results = await connDB.query("SELECT MAX(id) + 1 AS id FROM `cotizaciones`");
       return NextResponse.json(results);
     } catch (error:any) {
       console.log(error);
@@ -41,7 +41,7 @@ export async function GET() {
             const cantidad = formData2.get(`productos[${i}][cantidad]`);
 
             // Insertar los datos en la base de datos
-            const results = await conn.query("INSERT INTO detalleCotizacion SET ?", {
+            const results = await connDB.query("INSERT INTO detalleCotizacion SET ?", {
                 id: id,
                 codigoProducto: codigo,
                 producto: nombre, // Cambia esto según tu estructura de base de datos

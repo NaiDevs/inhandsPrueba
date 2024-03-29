@@ -1,11 +1,11 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 import { NextApiResponse } from "next";
 
 export async function GET(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const results = await conn.query("SELECT * FROM clientes WHERE dni = ?", [
+      const results = await connDB.query("SELECT * FROM clientes WHERE dni = ?", [
         params.dni,
       ]);
   
@@ -34,7 +34,7 @@ export async function GET(request: any, response: NextApiResponse) {
   export async function DELETE(request: any, response: NextApiResponse) {
     try {
       const { params } = request;
-      const result = await conn.query("DELETE FROM clientes WHERE dni = ?", [
+      const result = await connDB.query("DELETE FROM clientes WHERE dni = ?", [
         params.dni,
       ]);
   
@@ -63,7 +63,7 @@ export async function GET(request: any, response: NextApiResponse) {
         rtn: data.get("rtn"),
         direccion: data.get("direccion")
       }
-      const results = await conn.query("UPDATE clientes SET ? WHERE dni = ?" , [
+      const results = await connDB.query("UPDATE clientes SET ? WHERE dni = ?" , [
         updateData,
         params.dni,
       ]);

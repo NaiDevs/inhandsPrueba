@@ -8,7 +8,7 @@ if (process.env.DB_USER === 'u966946366_username') {
 }
 
 
-export const conn = mysql({
+export const connDB = mysql({
     config: {
         host     : "193.203.166.107",
         user     : process.env.USER, // Acceder a la variable de entorno dentro de la función

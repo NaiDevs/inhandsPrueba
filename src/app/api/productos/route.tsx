@@ -1,10 +1,10 @@
-import { conn } from "@/libs/mysql";
+import { connDB } from "@/libs/mysql";
 import { NextResponse } from "next/server";
 
 
 export async function GET() {
     try {
-      const results = await conn.query("SELECT * FROM inventario ORDER BY `nombre` ASC;");
+      const results = await connDB.query("SELECT * FROM inventario ORDER BY `nombre` ASC;");
       return NextResponse.json(results);
     } catch (error:any) {
       console.log(error);
@@ -22,7 +22,7 @@ export async function GET() {
   export async function POST(request:any) {
     try {
       const data = await request.formData();
-      const results = await conn.query("INSERT INTO inventario SET ?" ,{
+      const results = await connDB.query("INSERT INTO inventario SET ?" ,{
         codigo: data.get("codigo"),
         nombre: data.get("nombre"),
         precio: data.get("precio"),
