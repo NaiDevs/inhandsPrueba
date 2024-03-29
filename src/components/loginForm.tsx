@@ -18,9 +18,8 @@ export default function LoginForm() {
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-  console.log("Valores de usuario y contraseña:", username, password);
-  try {
-    const response = await axios.post('/api/login', { username, password });
+    try {
+      const response = await axios.post('/api/login', { username, password });
       router.push("/inventario")
     } catch (error) {
       console.error('Error durante el inicio de sesión:', error);
