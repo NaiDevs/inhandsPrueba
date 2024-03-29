@@ -3,15 +3,14 @@ import { NextResponse } from "next/server";
 
 
 export async function GET() {
-  const results = await connGlobal.query("SELECT * FROM usuarios");
-
     try {
+      const results = await connGlobal.query("SELECT * FROM usuarios");
       return NextResponse.json(results);
-    } catch (results) {
-      console.log(results);
+    } catch (error:any) {
+      console.log(error);
       return NextResponse.json(
         {
-          message: results,
+          message: error.message,
         },
         {
           status: 404,
